@@ -14,6 +14,8 @@
 
 > Brand Mind is **AI-inspired, not AI-powered**. It uses a seeded, inspectable JavaScript algorithm—never an LLM, image model, or remote service. The output is creative direction for exploration, not an automatically complete brand strategy.
 
+[Open the live studio ↗](https://harshareddy0405.github.io/brand-mind/) · [Engineering notes](docs/ENGINEERING.md) · [Quality checks](https://github.com/harshareddy0405/brand-mind/actions)
+
 ## The problem
 
 Early brand exploration falls into an awkward gap: moodboards are expressive but hard to translate, while design-token tools need decisions that do not exist yet. Brand Mind bridges that gap. A small brief becomes a coherent direction you can see in context, tune, save, and hand off as ordinary CSS or JSON.
