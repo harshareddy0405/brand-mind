@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Brand Mind is a local-first, algorithmic brand system generator for fast creative direction."
+    />
+    <meta name="theme-color" content="#f2efe6" />
+    <title>Brand Mind — Brand systems with a point of view</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="quality.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to brand studio</a>
+    <header class="site-header">
+      <a class="wordmark" href="#" aria-label="Brand Mind home">
+        <span class="wordmark-icon" aria-hidden="true"><i></i><i></i></span>
+        <span>brand<span>/</span>mind</span>
+      </a>
+      <p class="header-note">A tiny studio for big identities <span>✦</span></p>
+      <div class="header-actions">
+        <span class="local-status"><i></i> Local studio</span>
+        <button
+          class="plain-button"
+          id="historyButton"
+          type="button"
+          aria-controls="historyDrawer"
+          aria-expanded="false"
+        >
+          Saved <b id="savedCount">0</b>
+        </button>
+        <button class="dark-button" id="exportJsonButton" type="button">
+          Export kit ↗
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="intro">
+        <p class="kicker">GENERATIVE DESIGN TOOL · NO AI API</p>
+        <h1>Find the feeling.<br /><em>Build the system.</em></h1>
+        <p>
+          Turn a few brand instincts into an editable visual direction—palette,
+          type, voice, mark, and interface tokens—entirely in your browser.
+        </p>
+        <div class="intro-line" aria-hidden="true">
+          <span>BRIEF</span><i></i><span>SYSTEM</span><i></i><span>SHIP</span>
+        </div>
+      </section>
+
+      <section class="studio-shell" aria-label="Brand system generator">
+        <aside class="brief-panel">
+          <div class="panel-index">
+            <span>01</span>
+            <p>Creative brief</p>
+            <em>INPUT</em>
+          </div>
+          <div class="brief-body">
+            <div class="field-group full">
+              <label for="brandName">Brand name</label>
+              <input
+                id="brandName"
+                value="Morrow"
+                maxlength="28"
+                autocomplete="off"
+              />
+            </div>
+            <div class="field-group full">
+              <label for="tagline">Tagline</label>
+              <input
+                id="tagline"
+                value="Make tomorrow feel possible."
+                maxlength="72"
+                autocomplete="off"
+              />
+            </div>
+            <div class="split-fields">
+              <div class="field-group">
+                <label for="industry">World</label>
+                <select id="industry">
+                  <option value="technology">Technology</option>
+                  <option value="wellness">Wellness</option>
+                  <option value="culture">Culture</option>
+                  <option value="finance">Finance</option>
+                  <option value="food">Food & drink</option>
+                  <option value="climate">Climate</option>
+                  <option value="education">Education</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="archetype">Archetype</label>
+                <select id="archetype">
+                  <option value="visionary">Visionary</option>
+                  <option value="sage">Sage</option>
+                  <option value="rebel">Rebel</option>
+                  <option value="caregiver">Caregiver</option>
+                  <option value="explorer">Explorer</option>
+                  <option value="maker">Maker</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-group full">
+              <label for="audience">Built for</label>
+              <input
+                id="audience"
+                value="curious teams building what comes next"
+                maxlength="80"
+                autocomplete="off"
+              />
+            </div>
+
+            <fieldset class="personality-fields">
+              <legend>Personality mix</legend>
+              <label
+                ><span><b>Quiet</b><b>Loud</b></span
+                ><input
+                  id="energy"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="62"
+                /><output for="energy">62</output></label
+              >
+              <label
+                ><span><b>Classic</b><b>Future</b></span
+                ><input
+                  id="era"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="74"
+                /><output for="era">74</output></label
+              >
+              <label
+                ><span><b>Precise</b><b>Playful</b></span
+                ><input
+                  id="play"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="38"
+                /><output for="play">38</output></label
+              >
+            </fieldset>
+
+            <div class="brief-actions">
+              <button class="generate-button" id="generateButton" type="button">
+                <span>Generate direction</span><i aria-hidden="true">✦</i>
+              </button>
+              <button
+                class="shuffle-button"
+                id="surpriseButton"
+                type="button"
+                title="Surprise me"
+                aria-label="Fill a surprise creative brief"
+              >
+                ↻
+              </button>
+            </div>
+            <p class="algorithm-note">
+              <span aria-hidden="true">⌁</span> Uses a seeded color-and-copy
+              algorithm. No prompts, uploads, or network requests.
+            </p>
+          </div>
+        </aside>
+
+        <section class="system-panel">
+          <div class="panel-index">
+            <span>02</span>
+            <p>Generated system</p>
+            <em id="systemSeed">SEED 001</em>
+          </div>
+          <div class="system-toolbar">
+            <div
+              class="view-tabs"
+              role="tablist"
+              aria-label="Brand system views"
+            >
+              <button
+                class="view-tab active"
+                role="tab"
+                aria-selected="true"
+                data-view="board"
+                type="button"
+              >
+                Brand board
+              </button>
+              <button
+                class="view-tab"
+                role="tab"
+                aria-selected="false"
+                data-view="preview"
+                type="button"
+              >
+                In the wild
+              </button>
+              <button
+                class="view-tab"
+                role="tab"
+                aria-selected="false"
+                data-view="tokens"
+                type="button"
+              >
+                Tokens
+              </button>
+            </div>
+            <div class="system-actions">
+              <button
+                class="icon-button"
+                id="copyCssButton"
+                type="button"
+                title="Copy CSS variables"
+                aria-label="Copy CSS variables"
+              >
+                { }
+              </button>
+              <button
+                class="icon-button"
+                id="saveButton"
+                type="button"
+                title="Save this direction"
+                aria-label="Save this direction"
+              >
+                ♡
+              </button>
+            </div>
+          </div>
+
+          <div
+            class="system-view active"
+            id="boardView"
+            data-system-view="board"
+          >
+            <div class="board-grid">
+              <article class="brand-tile identity-tile">
+                <div class="tile-heading">
+                  <span>A / 01</span><b>Identity</b>
+                </div>
+                <div class="identity-stage" id="identityStage">
+                  <div
+                    class="generated-mark"
+                    id="generatedMark"
+                    aria-label="Generated brand mark"
+                  >
+                    <i></i><strong id="markInitial">M</strong>
+                  </div>
+                  <div class="identity-copy">
+                    <strong id="displayName">Morrow</strong
+                    ><span id="displayTagline"
+                      >Make tomorrow feel possible.</span
+                    >
+                  </div>
+                </div>
+                <div class="mark-controls">
+                  <span>MARK DNA</span
+                  ><button id="cycleMarkButton" type="button">
+                    Cycle form ↻
+                  </button>
+                </div>
+              </article>
+
+              <article class="brand-tile palette-tile">
+                <div class="tile-heading">
+                  <span>B / 02</span><b>Palette</b>
+                </div>
+                <div class="swatch-list" id="swatchList"></div>
+                <p class="contrast-line" id="contrastLine">
+                  <span>AA</span> Primary pairing passes
+                </p>
+              </article>
+
+              <article class="brand-tile type-tile">
+                <div class="tile-heading">
+                  <span>C / 03</span><b>Typography</b>
+                </div>
+                <div class="type-specimen">
+                  <div class="type-display" id="typeDisplay">Aa</div>
+                  <div>
+                    <strong id="displayFontName">Modern Grotesk</strong
+                    ><span id="displayFontMeta">Display / 700 / −3%</span>
+                  </div>
+                </div>
+                <div class="type-body-row">
+                  <span>Body</span><b id="bodyFontName">Humanist Sans</b
+                  ><em id="typeSample">Clear ideas deserve clear words.</em>
+                </div>
+              </article>
+
+              <article class="brand-tile voice-tile">
+                <div class="tile-heading">
+                  <span>D / 04</span><b>Voice & language</b>
+                </div>
+                <blockquote id="voiceHeadline">
+                  “Build the next thing like it already belongs.”
+                </blockquote>
+                <div class="voice-traits" id="voiceTraits"></div>
+                <div class="voice-rule">
+                  <span>WE SAY</span>
+                  <p id="sayLine">“Let’s make it tangible.”</p>
+                  <span>NOT</span>
+                  <p id="notLine">“Leverage future-ready solutions.”</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div
+            class="system-view"
+            id="previewView"
+            data-system-view="preview"
+            hidden
+          >
+            <div
+              class="preview-switcher"
+              role="group"
+              aria-label="Preview format"
+            >
+              <button class="active" type="button" data-preview="landing">
+                Landing page
+              </button>
+              <button type="button" data-preview="social">Social post</button>
+              <button type="button" data-preview="product">Product card</button>
+            </div>
+            <div class="mockup-frame">
+              <div class="mockup-browser">
+                <span></span><span></span><span></span
+                ><b id="mockDomain">morrow.studio</b>
+              </div>
+              <div class="mockup-canvas" id="mockupCanvas"></div>
+            </div>
+          </div>
+
+          <div
+            class="system-view"
+            id="tokensView"
+            data-system-view="tokens"
+            hidden
+          >
+            <div class="token-intro">
+              <div>
+                <p class="micro-label">DESIGN TOKENS</p>
+                <h2>From direction to interface.</h2>
+                <p>
+                  A portable set of CSS custom properties generated from the
+                  current system.
+                </p>
+              </div>
+              <button class="dark-button" id="downloadCssButton" type="button">
+                Download CSS
+              </button>
+            </div>
+            <pre class="token-code" id="tokenCode" tabindex="0"></pre>
+            <div class="token-stats" id="tokenStats"></div>
+          </div>
+        </section>
+      </section>
+
+      <section class="principles">
+        <div class="principles-title">
+          <span>03</span>
+          <h2>A system, not a slot machine.</h2>
+        </div>
+        <div class="principle-grid">
+          <article>
+            <b>01</b>
+            <h3>Editable by design</h3>
+            <p>
+              The brief, colors, copy, mark, and layout stay open to your
+              direction.
+            </p>
+          </article>
+          <article>
+            <b>02</b>
+            <h3>Rules you can inspect</h3>
+            <p>
+              Seeded browser logic maps personality inputs to every design
+              decision.
+            </p>
+          </article>
+          <article>
+            <b>03</b>
+            <h3>Ready to translate</h3>
+            <p>
+              Export plain JSON or CSS tokens—no proprietary file format, no
+              lock-in.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <aside
+      class="history-drawer"
+      id="historyDrawer"
+      aria-labelledby="historyTitle"
+      hidden
+    >
+      <div class="drawer-header">
+        <div>
+          <p class="micro-label">YOUR LOCAL LIBRARY</p>
+          <h2 id="historyTitle">Saved directions</h2>
+        </div>
+        <button
+          class="close-button"
+          id="closeHistoryButton"
+          type="button"
+          aria-label="Close saved directions"
+        >
+          ×
+        </button>
+      </div>
+      <div class="saved-list" id="savedList"></div>
+      <p class="drawer-foot">Saved in this browser only.</p>
+    </aside>
+    <div class="drawer-scrim" id="drawerScrim" hidden></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="storage.js"></script>
+    <script src="schema.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
